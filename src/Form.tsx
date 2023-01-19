@@ -1,37 +1,19 @@
 import { Box, Button, Typography } from "@mui/material";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { uploadSchema } from "./utils/validations/uploadValidations";
-import { ICardRadio } from "./types/appTypes";
+import { pageSchema } from "./utils/validations/pageValidations";
 import CardRadioFields from "./components/CardRadioFields";
+import { pageTypeOptions } from "./utils/pageUtils";
 
-const options: ICardRadio[] = [
-  {
-    label: "Full page",
-    description: "Web page with images, title, content and related pages",
-    value: "full-page"
-  },
-  {
-    label: "Page content",
-    value: "page-content",
-    description: "Just a page content, used as a block in full page"
-  },
-  {
-    label: "Blog",
-    value: "blog",
-    description:
-      "Used as article, a blog have a category with all full page fields"
-  }
-];
 const Form = () => {
   const form = useForm({
-    mode: "onChange",
-    resolver: zodResolver(uploadSchema)
+    resolver: zodResolver(pageSchema),
+    defaultValues: { type: pageTypeOptions[1].value }
   });
 
   const { handleSubmit } = form;
 
-  const onSubmit = (values) => console.log("values", values);
+  const onSubmit = (values): void => console.log("values", values);
 
   return (
     <Box
@@ -44,12 +26,12 @@ const Form = () => {
     >
       <FormProvider {...form}>
         <form onSubmit={handleSubmit(onSubmit)}>
+          {/* -------- radio options -------- */}
           <CardRadioFields
             label="Page type"
-            name="pageType"
-            options={options}
+            name="type"
+            options={pageTypeOptions}
           />
-          {/* -------- inputs -------- */}
 
           {/* -------- button -------- */}
           <Box mt={1}>
