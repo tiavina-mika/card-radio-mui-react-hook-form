@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from "react";
 
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Stack, styled, Typography } from "@mui/material";
 import { ICardRadio } from "../types/appTypes";
 
 // -------------- styled dropzone -------------- //
@@ -22,11 +22,32 @@ import { ICardRadio } from "../types/appTypes";
 const sx = {
   card: {
     flex: 1,
-    borderRadius: 6,
+    borderRadius: 1,
     border: "1px solid #e4e5e6",
-    backgroundColor: "#fff"
+    backgroundColor: "#fff",
+    padding: 20 / 6
   }
 };
+
+type HeaderProps = {
+  checked: boolean;
+};
+
+const StyledCard = styled(Box, {
+  shouldForwardProp: (prop) => prop !== "checked"
+})<HeaderProps>(({ theme, checked }) => ({
+  borderRadius: 6,
+  borderWidth: 1,
+  borderStyle: "solid",
+  borderColor: checked ? theme.palette.primary.main : "#e4e5e6",
+  backgroundColor: "#fff",
+  padding: 20,
+  cursor: "pointer",
+  transition: "all 0.15s ease-in",
+  "&:hover": {
+    borderColor: theme.palette.primary.main
+  }
+}));
 
 type Props = {
   onChange: (...event: any[]) => void;
@@ -47,12 +68,13 @@ const CardRadioInput: FC<Props> = ({ onChange, value, options }) => {
   };
 
   return (
-    <Stack direction="row">
+    <Stack direction="row" spacing={2}>
       {options.map((option: ICardRadio, index: number) => (
-        <Box
+        <StyledCard
           key={option.value + index}
-          sx={sx.card}
+          // sx={sx.card}
           onClick={() => onChecked(option.value)}
+          checked={options[0].value === option.value}
         >
           <Stack>
             <Typography>{option.label}</Typography>
@@ -62,7 +84,7 @@ const CardRadioInput: FC<Props> = ({ onChange, value, options }) => {
               <Typography>{option.description}</Typography>
             </Box>
           )}
-        </Box>
+        </StyledCard>
       ))}
     </Stack>
   );
