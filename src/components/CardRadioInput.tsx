@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from "react";
 
 import { Box, Stack, Typography } from "@mui/material";
-import { SelectOption } from "../types/appTypes";
+import { ICardRadio } from "../types/appTypes";
 
 // -------------- styled dropzone -------------- //
 // type StyleDropzoneProps = {
@@ -31,7 +31,7 @@ const sx = {
 type Props = {
   onChange: (...event: any[]) => void;
   value?: string;
-  options: SelectOption[];
+  options: ICardRadio[];
 };
 
 const CardRadioInput: FC<Props> = ({ onChange, value, options }) => {
@@ -48,13 +48,20 @@ const CardRadioInput: FC<Props> = ({ onChange, value, options }) => {
 
   return (
     <Stack direction="row">
-      {options.map((option: SelectOption, index: number) => (
+      {options.map((option: ICardRadio, index: number) => (
         <Box
           key={option.value + index}
           sx={sx.card}
           onClick={() => onChecked(option.value)}
         >
-          <Typography>{option.label}</Typography>
+          <Stack>
+            <Typography>{option.label}</Typography>
+          </Stack>
+          {option.description && (
+            <Box>
+              <Typography>{option.description}</Typography>
+            </Box>
+          )}
         </Box>
       ))}
     </Stack>

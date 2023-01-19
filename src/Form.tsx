@@ -2,21 +2,25 @@ import { Box, Button, Typography } from "@mui/material";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { uploadSchema } from "./utils/validations/uploadValidations";
-import { SelectOption } from "./types/appTypes";
+import { ICardRadio } from "./types/appTypes";
 import CardRadioFields from "./components/CardRadioFields";
 
-const options: SelectOption[] = [
+const options: ICardRadio[] = [
   {
     label: "Full page",
+    description: "Web page with images, title, content and related pages",
     value: "full-page"
   },
   {
     label: "Page content",
-    value: "page-content"
+    value: "page-content",
+    description: "Just a page content, used as a block in full page"
   },
   {
     label: "Blog",
-    value: "blog"
+    value: "blog",
+    description:
+      "Used as article, a blog have a category with all full page fields"
   }
 ];
 const Form = () => {

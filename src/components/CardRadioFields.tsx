@@ -1,19 +1,18 @@
 import { FC } from "react";
 
 import { Box, FormHelperText, InputLabel, SxProps, Theme } from "@mui/material";
-import { DropzoneOptions } from "react-dropzone";
 import { Controller, useFormContext } from "react-hook-form";
 
 import CardRadioInput from "./CardRadioInput";
-import { SelectOption } from "../types/appTypes";
+import { ICardRadio } from "../types/appTypes";
 
 type Props = {
   name: string;
   label?: string;
   helperText?: string;
   sx?: SxProps<Theme>;
-  options: SelectOption[];
-} & DropzoneOptions;
+  options: ICardRadio[];
+};
 
 const CardRadioFields: FC<Props> = ({
   name,
