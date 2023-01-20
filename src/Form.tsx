@@ -2,7 +2,7 @@ import { Box, Button, Typography } from "@mui/material";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { pageSchema } from "./utils/validations/pageValidations";
-import CardRadioFields from "./components/CardRadioFields";
+import CardRadioField from "./components/CardRadioField";
 import { pageTypeOptions } from "./utils/pageUtils";
 
 const Form = () => {
@@ -27,7 +27,7 @@ const Form = () => {
       <FormProvider {...form}>
         <form onSubmit={handleSubmit(onSubmit)}>
           {/* -------- radio options -------- */}
-          <CardRadioFields
+          <CardRadioField
             label="Page type"
             name="type"
             options={pageTypeOptions}

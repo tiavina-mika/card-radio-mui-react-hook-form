@@ -14,7 +14,7 @@ type Props = {
   options: ICardRadio[];
 };
 
-const CardRadioFields: FC<Props> = ({
+const CardRadioField: FC<Props> = ({
   name,
   label,
   helperText,
@@ -62,4 +62,4 @@ const CardRadioFields: FC<Props> = ({
   );
 };
 
-export default CardRadioFields;
+export default CardRadioField;
