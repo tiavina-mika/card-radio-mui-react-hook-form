@@ -1,7 +1,6 @@
 import { FaNewspaper, FaRegWindowMaximize, FaStickyNote } from "react-icons/fa";
-import { ICardRadio } from "../types/appTypes";
 
-export const pageTypeOptions: ICardRadio[] = [
+export const pageTypeOptions = [
   {
     label: "Full page",
     description: "Web page with images, title, content and related pages",
@@ -21,4 +20,4 @@ export const pageTypeOptions: ICardRadio[] = [
     description:
       "Used as article, a blog have a category with all full page fields"
   }
-];
+] as const;
