@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { pageSchema } from "./utils/validations/pageValidations";
@@ -16,37 +16,23 @@ const Form = () => {
   const onSubmit = (values): void => console.log("values", values);
 
   return (
-    <Box
-      sx={{
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between"
-      }}
-    >
-      <FormProvider {...form}>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          {/* -------- radio options -------- */}
-          <CardRadioField
-            label="Page type"
-            name="type"
-            options={pageTypeOptions}
-          />
+    <FormProvider {...form}>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        {/* -------- radio options -------- */}
+        <CardRadioField
+          label="Page type"
+          name="type"
+          options={pageTypeOptions}
+        />
 
-          {/* -------- button -------- */}
-          <Box mt={1}>
-            <Button type="submit" variant="contained">
-              Submit
-            </Button>
-          </Box>
-        </form>
-      </FormProvider>
-      <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-        <a href="https://www.linkedin.com/in/tiavina-michael-ralainirina/">
-          <Typography>By Tiavina Michael Ralainirina</Typography>
-        </a>
-      </Box>
-    </Box>
+        {/* -------- button -------- */}
+        <Box mt={1}>
+          <Button type="submit" variant="contained">
+            Submit
+          </Button>
+        </Box>
+      </form>
+    </FormProvider>
   );
 };
 
