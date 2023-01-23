@@ -3,7 +3,11 @@ export interface SelectOption {
   readonly label: string;
 }
 
-export interface ICardRadio extends SelectOption {
-  readonly icon?: any;
-  readonly description?: string;
+export type Mutable<T> = {
+  -readonly [k in keyof T]: T[k];
+};
+
+export interface ICardRadio extends Mutable<SelectOption> {
+  icon?: any;
+  description?: string;
 }
